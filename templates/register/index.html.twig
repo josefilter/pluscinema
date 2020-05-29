@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CinemaPlus{% endblock %}
+
+{% block menu %}
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('inicio') }}">Inicio</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('peliculas') }}">Películas</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('series') }}">Series</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{{ path('register') }}">Registrar</a>
+        </li>
+        {% if app.user != null %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('logout') }}">Salir</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('login') }}">Login</a>
+        </li>
+        {% endif %}
+    </ul>
+</div>
+{% endblock %}
+
+{% block body %}
+<div class="container MargenSuper">
+    {{ form_start(form) }}
+        {{ form_row(form.username) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.password) }}
+
+        <button type="submit">Registrarse</button>
+    {{ form_end(form) }}
+</div>
+{% endblock %}
+
+{% block footer %}
+    <footer class="page-footer pie">© 2020 Copyright <span class="cinema">CinemaPlus</span></footer>
+{% endblock %}

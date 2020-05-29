@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CinemaPlus{% endblock %}
+
+{% block menu %}
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('inicio') }}">Inicio</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('peliculas') }}">Películas</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('series') }}">Series</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('register') }}">Registrar</a>
+        </li>
+        {% if app.user != null %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('logout') }}">Salir</a>
+        </li>
+        {% else %}
+        <li class="nav-item active">
+            <a class="nav-link" href="{{ path('login') }}">Login</a>
+        </li>
+        {% endif %}
+    </ul>
+</div>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+{% if app.user != null%}
+    {{dump(app.user)}}
+{% endif %}
+
+    <form method="post" class="MargenSuper">
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        <h1 class="h3 mb-3 font-weight-normal">Por favor, haz login</h1>
+        <label for="inputUsername">Usuario</label>
+        <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" required autofocus>
+
+        <br />
+        <label for="inputPassword">Contraseña</label>
+        <input type="password" name="password" id="inputPassword" class="form-control" required>
+
+        <br />
+        <input type="hidden" name="_csrf_token"
+            value="{{ csrf_token('authenticate') }}"
+        >
+
+        {#
+            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+            See https://symfony.com/doc/current/security/remember_me.html
+
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" name="_remember_me"> Remember me
+                </label>
+            </div>
+        #}
+
+        <br />
+        <button class="btn btn-lg btn-primary" type="submit">
+            Login
+        </button>
+    </form>
+</div>
+{% endblock %}
+
+{% block footer %}
+    <footer class="page-footer pie">© 2020 Copyright <span class="cinema">CinemaPlus</span></footer>
+{% endblock %}

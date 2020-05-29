@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CinemaPlus-BorrarPelicula{% endblock %}
+
+{% block menu %}
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('inicio') }}">Inicio</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('peliculas') }}">Peliculas</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('series') }}">Series</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('register') }}">Registrar</a>
+        </li>
+        {% if app.user != null %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('logout') }}">Salir</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('login') }}">Login</a>
+        </li>
+        {% endif %}
+    </ul>
+</div>
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid col-12 col-sm-12 col-xl-12 MargenSuper">
+    <h2>La película se ha borrado con éxito.</h2>
+</div>
+{% endblock %}
+
+{% block footer %}
+    <footer class="page-footer pie">© 2020 Copyright <span class="cinema">CinemaPlus</span></footer>
+{% endblock %}

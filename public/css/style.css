@@ -1,0 +1,115 @@
+.example-wrapper { 
+    margin: 1em auto; 
+    max-width: 800px; 
+    width: 95%; 
+    font: 18px/1.5 sans-serif; 
+}
+
+.example-wrapper code { 
+    background: #F5F5F5; 
+    padding: 2px 6px; 
+}
+
+.nombre { 
+    color:blue; 
+    font-weight: bold;
+    font-size: 22px;
+}
+
+footer {
+    background-color: #4B4B4B;
+    text-align: center;
+    color:white;
+    margin-top: 15px;
+}
+
+.cinema {
+    color: orange;
+}
+
+.titulosCentrados {
+    text-align: center;
+    font-weight: bold;
+}
+
+.fit-image{
+    width: 200px;
+    object-fit: cover;
+    height: 300px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.MargenSuper {
+    margin-top: 30px;
+}
+
+.pie {
+    bottom: 0;
+    position: fixed;
+    left: 0px;
+    width: 100%;
+}
+
+.detallePeli {
+    margin-left: 50px;
+    margin-top: 20px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+
+.comentario {
+    margin-left: 50px;
+}
+
+.enlacePeli {
+    color: black;
+}
+
+.enlacePeli:hover {
+    text-decoration: none;
+    color: black;
+}
+
+.imagenLista {
+    margin-left: 150px;
+}
+
+.category {
+    padding: 15px;
+    margin: 0 auto;
+    width: 50%;
+}
+
+.lista {
+    display: inline-block;
+}
+
+.enlaceboton {
+    font-family: verdana, arial, sans-serif;
+    font-size: 10pt;
+    font-weight: bold;
+    padding: 4px;
+    background-color: #444444;
+    color: white;
+    text-decoration: none;
+ }
+
+.enlaceboton:link,.enlaceboton:visited {
+    border-top: 1px solid #cccccc;
+    border-bottom: 2px solid #666666;
+    border-left: 1px solid #cccccc;
+    border-right: 2px solid #666666;
+}
+
+.enlaceboton:hover {
+    border-bottom: 1px solid #cccccc;
+    border-top: 2px solid #666666;
+    border-right: 1px solid #cccccc;
+    border-left: 2px solid #666666;
+    text-decoration: none;
+    color: white;
+}

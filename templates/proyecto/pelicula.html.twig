@@ -1,0 +1,104 @@
+{# templates/proyecto/noticia.html.twig #}
+{% extends 'base.html.twig' %}
+{% block title %}{{ pelicula.Titulo }}{% endblock %}
+
+{% block menu %}
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('inicio') }}">Inicio</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{{ path('pelicula', {'id': pelicula.id}) }}">{{ pelicula.Titulo }}</a>
+        </li>
+    </ul>
+</div>
+{% endblock %}
+{% block body %}
+    <div class="row">
+
+        <div class="col-12 col-sm-8 col-xl-3 detallePeli">
+            <img src="{{ asset('images/imagen' ~ pelicula.id ~ '.jpg') }}" />
+        </div>
+        <div class="col-12 col-sm-8 col-xl-8 detallePeli">
+            <h2>Título: {{ pelicula.Titulo }}</h2>
+            <p><strong>Resumen:</strong> {{ pelicula.Resumen }}</p>
+            <p><strong>Director:</strong> {{ pelicula.Director }}</p>
+            <p><strong>Actores:</strong> {{ pelicula.Actores }}</p>
+            <p><strong>Escritores:</strong> {{ pelicula.Escritores }}</p>
+            <p><strong>Edad recomendada:</strong> {{ pelicula.Edad }}</p>
+            <p><strong>Duración:</strong> {{ pelicula.Duracion }}</p>
+            <p><strong>Género:</strong> {{ pelicula.Genero }}</p>
+            <p><strong>Fecha de lanzamiento:</strong> {{ pelicula.fechaSalida|date("d/m/Y") }}</p>
+            {% if pelicula.valoracions.count() == 0 %}
+                <p><strong>Valoración media:</strong> Esta película aún no ha sido valorada.</p>
+            {% else %}
+                {% set suma = 0 %}
+                {% for valoracion in pelicula.valoracions %}
+                    {% set numeros = valoracion.valoracion %}
+                    {% set suma = numeros + suma %}
+                {% endfor %}
+                {% set media = suma / pelicula.valoracions.count() %}
+                <p><strong>Valoración media:</strong> {{ media|round(1, 'floor') }}/10</p>
+            {% endif %}
+            <br />
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+    <br /><br />
+    <div class="row comentario">
+        {{ form_start(form2) }}
+        {{ form_widget(form2) }}
+        {{ form_end(form2) }}
+
+        <ul>
+        {% for comentario in pelicula.comentarios %}
+            <li class='bloqueComentario'>
+                <p>
+                    {% if comentario.Autor != null %}
+                        <strong>{{ comentario.Autor.username }}</strong>
+                    {% else %}
+                        <strong>Anónimo</strong>
+                    {% endif %}
+                    en {{ comentario.fecha|date("d/m/Y") }}:
+                </p>
+                <p>{{ comentario.texto }}</p>
+            </li>
+        {% else %}
+            <li>No hay comentarios</li>
+        {% endfor %}
+        </ul>
+    </div>
+
+
+    <br /><br />
+    <div class="container-fluid col-12 col-sm-12 col-xl-12 MargenSuper">
+        <p><a class="enlaceboton" href="{{ path('descargarPDFPeli', {'id' : pelicula.id}) }}">Descargar PDF</a></p>
+    </div>
+
+    <div class="container-fluid col-12 col-sm-12 col-xl-12 MargenSuper">
+        {% if app.user != null %}
+            {% for rol in user %}
+                {% for rol1 in rol.roles %}
+                    {% if app.user.username == rol.username and rol1 == "admin" %}
+                        <p><a class="enlaceboton" href="{{ path('borrarPelicula', {'id' : pelicula.id}) }}">Borrar pelicula</a></p>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <div class="container-fluid col-12 col-sm-12 col-xl-12 MargenSuper">
+        {% if app.user != null %}
+            {% for rol in user %}
+                {% for rol1 in rol.roles %}
+                    {% if app.user.username == rol.username and rol1 == "admin" %}
+                        <p><a class="enlaceboton" href="{{ path('editarPelicula', {'id' : pelicula.id}) }}">Editar pelicula</a></p>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}

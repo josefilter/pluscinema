@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CinemaPlus-ListaPeliculas{% endblock %}
+
+{% block menu %}
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('inicio') }}">Inicio</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{{ path('peliculas') }}">Peliculas</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('series') }}">Series</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('register') }}">Registrar</a>
+        </li>
+        {% if app.user != null %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('logout') }}">Salir</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('login') }}">Login</a>
+        </li>
+        {% endif %}
+    </ul>
+</div>
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid col-12 col-sm-12 col-xl-12 MargenSuper">
+    <h2>Listado de peliculas</h2>
+    <br /><br />
+    <div class="col-4 col-sm-4 col-xl-4">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </div>
+    <br /><br />
+    <div id="lista-peliculas">
+        {% for pelicula in peliculas %}
+            <div class="row">
+                <div class="col-12 col-lg-12 col-xl-4">
+                    <a href="{{ path('pelicula', {'id': pelicula.id}) }}"><img src="{{ asset('images/imagen' ~ pelicula.id ~ '.jpg') }}" class="img-responsive fit-image imagenLista"></a>
+                </div>
+                <div class="col-12 col-lg-12 col-xl-8">
+                    <a class="enlacePeli" href="{{ path('pelicula', {'id': pelicula.id}) }}"><h3>{{ pelicula.Titulo }}</h3></a>
+                    <p>{{ pelicula.Actores }}</p>
+                    <p>{{ pelicula.Director }}</p>
+                    <p>{{ pelicula.Resumen }}</p>
+                    <a class="enlacePeli" href="{{ path('pelicula', {'id': pelicula.id}) }}"><p>Leer mas...</p></a>
+                </div>
+            </div>
+            <br /><br />
+        {% endfor %}
+    </div>
+    
+    {% if app.user != null %}
+        {% for rol in user %}
+            {% for rol1 in rol.roles %}
+                {% if app.user.username == rol.username and rol1 == "admin" %}
+                    <p><a class="enlaceboton" href="{{ path('peliculaNueva') }}">Añadir pelicula</a></p>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+</div>
+{% endblock %}

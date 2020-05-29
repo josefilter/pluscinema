@@ -1,0 +1,75 @@
+inicio:
+    path: /
+    controller: App\Controller\HomeController::inicio
+
+register:
+    path: /register
+    controller: App\Controller\RegisterController::register
+    methods: GET|POST
+
+login:
+    path: /login
+    controller: App\Controller\SecurityController::login
+
+logout:
+    path: /logout
+
+pelicula:
+    path: /pelicula/{id}
+    controller: App\Controller\HomeController::pelicula
+    requirements:
+        id: '\d+'
+
+peliculas:
+    path: /listaPeliculas
+    controller: App\Controller\HomeController::peliculas
+
+series:
+    path: /listaSeries
+    controller: App\Controller\HomeController::series
+
+serie:
+    path: /serie/{id}
+    controller: App\Controller\HomeController::serie
+    requirements:
+        id: '\d+'
+
+peliculaNueva:
+    path: /pelicula/nueva
+    controller: App\Controller\HomeController::peliculaNueva
+
+serieNueva:
+    path: /serie/nueva
+    controller: App\Controller\HomeController::serieNueva
+
+borrarPelicula:
+    path: /pelicula/borrar/{id}
+    controller: App\Controller\HomeController::borrarPelicula
+
+borrarSerie:
+    path: /serie/borrar/{id}
+    controller: App\Controller\HomeController::borrarSerie
+
+editarPelicula:
+    path: /pelicula/editar/{id}
+    controller: App\Controller\HomeController::editarPelicula
+
+editarSerie:
+    path: /serie/editar/{id}
+    controller: App\Controller\HomeController::editarSerie
+
+descargarPDFPeli:
+    path: /descargar/pdf/peli/{id}
+    controller: App\Controller\HomeController::descargarPDFPeli
+
+descargarPDFSerie:
+    path: /descargar/pdf/serie/{id}
+    controller: App\Controller\HomeController::descargarPDFSerie
+
+buscadorPelis:
+    path: /buscar/peliculas
+    controller: App\Controller\HomeController::buscadorPelicula
+
+buscadorSeries:
+    path: /buscar/series
+    controller: App\Controller\HomeController::buscadorSerie

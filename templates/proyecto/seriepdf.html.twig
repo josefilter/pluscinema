@@ -1,0 +1,32 @@
+{# templates/proyecto/seriepdf.html.twig #}
+{% extends 'base.html.twig' %}
+
+<title>{% block title %}{{ serie.Titulo }}{% endblock %}</title>
+
+{% block body %}
+    <div class="row">
+
+        <div class="col-12 col-sm-12 col-xl-12 detallePeli">
+            <h2>Titulo: {{ serie.Titulo }}</h2>
+            <p>Resumen: {{ serie.Resumen }}</p>
+            <p>Actores: {{ serie.Actores }}</p>
+            <p>Número de temporadas: {{ serie.Temporadas }}</p>
+            <p>Número de capitulos: {{ serie.Capitulos }}</p>
+            <p>Genero: {{ serie.Genero }}</p>
+            {% if serie.valoracions.count() == 0 %}
+                <p><strong>Valoracion media:</strong> Esta serie aún no ha sido valorada.</p>
+            {% else %}
+                {% set suma = 0 %}
+                {% for valoracion in serie.valoracions %}
+                    {% set numeros = valoracion.valoracion %}
+                    {% set suma = numeros + suma %}
+                {% endfor %}
+                {% set media = suma / serie.valoracions.count() %}
+                <p><strong>Valoracion media:</strong> {{ media|round(1, 'floor') }}/10</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

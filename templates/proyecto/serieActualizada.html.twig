@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CinemaPlus-ActualizaSerie{% endblock %}
+
+{% block menu %}
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('inicio') }}">Inicio</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{{ path('editarSerie', {'id' : serie.id}) }}">Editar serie</a>
+        </li>
+    </ul>
+</div>
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid col-12 col-sm-12 col-xl-12 MargenSuper">
+    <h2>Editar "{{ serie.titulo }}"</h2>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+</div>
+{% endblock %}
+
+{% block footer %}
+    <footer class="page-footer pie">© 2020 Copyright <span class="cinema">CinemaPlus</span></footer>
+{% endblock %}
