@@ -8,7 +8,7 @@ register:
     methods: GET|POST
 
 login:
-    path: /acceder
+    path: /login
     controller: App\Controller\SecurityController::login
 
 logout:
