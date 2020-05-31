@@ -45,7 +45,7 @@
     {% for serie in series %}
         <div class="row">
             <div class="col-12 col-lg-12 col-xl-4">
-                <a href="{{ path('serie', {'id': serie.id}) }}"><img src="{{ asset('images/serie' ~ serie.id ~ '.jpg') }}" class="img-responsive fit-image imagenLista"></a>
+                <a href="{{ path('serie', {'id': serie.id}) }}"><img src="{{ asset('images/serie' ~ serie.id ~ '.jpg') }}" alt={{ serie.titulo }} class="img-responsive fit-image imagenLista"></a>
             </div>
             <div class="col-12 col-lg-12 col-xl-8">
                 <a class="enlacePeli" href="{{ path('serie', {'id': serie.id}) }}"><h3>{{ serie.titulo }}</h3></a>

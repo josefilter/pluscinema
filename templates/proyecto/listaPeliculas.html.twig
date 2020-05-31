@@ -44,7 +44,7 @@
         {% for pelicula in peliculas %}
             <div class="row">
                 <div class="col-12 col-lg-12 col-xl-4">
-                    <a href="{{ path('pelicula', {'id': pelicula.id}) }}"><img src="{{ asset('images/imagen' ~ pelicula.id ~ '.jpg') }}" class="img-responsive fit-image imagenLista"></a>
+                    <a href="{{ path('pelicula', {'id': pelicula.id}) }}"><img src="{{ asset('images/imagen' ~ pelicula.id ~ '.jpg') }}" alt={{ pelicula.titulo }} class="img-responsive fit-image imagenLista"></a>
                 </div>
                 <div class="col-12 col-lg-12 col-xl-8">
                     <a class="enlacePeli" href="{{ path('pelicula', {'id': pelicula.id}) }}"><h3>{{ pelicula.Titulo }}</h3></a>
